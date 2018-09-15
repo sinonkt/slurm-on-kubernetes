@@ -9,6 +9,8 @@ metadata:
     suite: slurm-cluster
 spec:
   ports:
+  - name: slurmctl-port
+    port: 6817
   - name: ssh-port
     port: 22
     targetPort: 0

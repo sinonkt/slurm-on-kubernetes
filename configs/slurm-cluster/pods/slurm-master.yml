@@ -19,3 +19,22 @@ spec:
     envFrom:
       - configMapRef:
           name: default-envs
+    securityContext:
+      capabilities:
+        add: ["SYS_ADMIN"]
+    volumeMounts:
+    - name: cgroup
+      mountPath: /sys/fs/cgroup
+      readOnly: true
+    - name: etc-slurm
+      mountPath: /etc/slurm
+      readOnly: true
+  volumes:
+  - name: cgroup
+    hostPath:
+      path: /sys/fs/cgroup
+      type: Directory
+  - name: etc-slurm
+    hostPath:
+      path: /Users/Krittin/Code/sinonkt/slurm-on-kubernetes/etc/slurm
+      type: Directory

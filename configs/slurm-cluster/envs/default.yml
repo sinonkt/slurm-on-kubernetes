@@ -7,5 +7,5 @@ data:
   SLURM_CLUSTER_NAME: slurm-default
   SLURM_CONTROL_MACHINE: master
   SLURM_CONTROL_ADDR: master.slurm-cluster
-  SLURM_NODE_NAME: compute-[0-2]
+  SLURM_NODE_NAME: compute-[0-2].slurmd
   SLURM_NODE_ADDR: compute-[0-2].slurmd.slurm-cluster.svc.cluster.local
