@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nfs-server
+  namespace: slurm-cluster
+spec:
+  containers:
+  - name: nfs-server
+    image: cpuguy83/nfs-server:latest
+    args: [ "/home" ]
+    ports:
+      - name: nfs
+        containerPort: 2049
+        protocol: TCP
+      - name: rpcbind
+        containerPort: 111
+        protocol: UDP
+    securityContext:
+      privileged: true
+    volumeMounts:
+      - mountPath: /exports
+        name: nfs-storage
+  volumes:
+    - name: nfs-storage
+      emptyDir: {}

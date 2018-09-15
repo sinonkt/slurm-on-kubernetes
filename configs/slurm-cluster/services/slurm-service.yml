@@ -1,0 +1,20 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: master
+  namespace: slurm-cluster
+  creationTimestamp: 
+  labels:
+    app: master
+    suite: slurm-cluster
+spec:
+  ports:
+  - name: ssh-port
+    port: 22
+    targetPort: 0
+    nodePort: 30022
+  selector:
+    app: master
+  type: NodePort
+status:
+  loadBalancer: {}

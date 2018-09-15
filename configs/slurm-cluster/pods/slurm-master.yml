@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: master
+  namespace: slurm-cluster
+  labels:
+    app: master
+spec:
+  containers:
+  - name: master
+    image: sinonkt/docker-slurmctld
+    ports:
+    - name: ssh-port
+      containerPort: 22
+      protocol: TCP
+    - name: slurmctld-port
+      containerPort: 6817
+      protocol: TCP
+    envFrom:
+      - configMapRef:
+          name: default-envs

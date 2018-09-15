@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: compute
+  namespace: slurm-cluster
+  labels:
+    app: compute
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: compute
+  serviceName: slurmd
+  template:
+    metadata:
+      labels:
+        app: compute
+    spec:
+      containers:
+      - name: compute
+        image: sinonkt/docker-slurmd
+        ports:
+        - name: slurmd-port
+          containerPort: 6818
+          protocol: TCP
+        envFrom:
+          - configMapRef:
+              name: default-envs
